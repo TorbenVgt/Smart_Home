@@ -322,5 +322,34 @@ Benutzerfreundlichkeit und Flexibilität
 Das Design des CLI ist darauf ausgerichtet, eine benutzerfreundliche und intuitive Bedienung zu ermöglichen. Die Kommandos sind logisch strukturiert, und das System bietet Hilfe und Anleitungen zur Nutzung der verschiedenen Funktionen. Diese Zugänglichkeit macht das CLI zu einem wertvollen Werkzeug für alle Benutzer des Smart Home Systems, von den Systemadministratoren bis hin zu Forschern und Lehrenden, die das System für ihre Projekte nutzen.
 
 ## Installationsanleitung
+Die folgende Installationsanleitung führt Sie durch die Einrichtung und Inbetriebnahme des Smart Home Systems. Dieser Leitfaden erläutert, wie Sie die erforderlichen Komponenten initialisieren und das System starten, um Benutzerinteraktionen über das Command Line Interface zu ermöglichen.
+
+#### Vorbereitung der Installation
+Stellen Sie sicher, dass Java auf Ihrem System installiert ist, da das Smart Home System in Java entwickelt wurde. Sie können die neueste Version von Java von der offiziellen Oracle Website herunterladen und installieren.
+
+#### Schritte zur Installation
+* Klonen des Repositorys:
+Klonen Sie das Repository des Smart Home Systems von GitHub auf Ihren lokalen Computer. Dies können Sie tun, indem Sie den entsprechenden Git-Befehl im Terminal verwenden:
+bash
+Copy code
+git clone https://github.com/TorbenVgt/Smart_Home
+
+* Öffnen des Projekts:
+Öffnen Sie das Projekt in Ihrer bevorzugten Java-Entwicklungsumgebung (IDE), wie IntelliJ IDEA oder Eclipse.
+* Kompilieren des Projekts:
+Kompilieren Sie das Projekt in Ihrer IDE oder verwenden Sie ein Build-Tool wie Maven oder Gradle, falls konfiguriert.
+#### Initialisierung der Systemkomponenten
+* Main-Datei:
+Die Hauptklasse des Projekts, üblicherweise Main.java, enthält den Einstiegspunkt des Programms. In dieser Datei werden die Instanzen für verschiedene Komponenten des Systems initialisiert:
+Gebäude und Flure: Instanzen für Gebäude und zugehörige Flure werden erstellt.
+* Räume: Jeder Flur enthält mehrere Räume, die ebenfalls initialisiert werden.
+* Sensoren und Aktoren: Jeder Raum wird mit den erforderlichen Sensoren und Aktoren ausgestattet, die zuvor in der Konfigurationsdatei definiert wurden.
+* Regeln: Die Regeln, die das Verhalten der Sensoren und Aktoren steuern, werden initialisiert und dem RuleManager hinzugefügt.
+#### Starten des CLI:
+Nach der Initialisierung der Komponenten startet das System das Command Line Interface, über das Benutzer mit dem System interagieren können. Benutzer können Anfragen stellen, um den Status von Sensoren abzurufen, Aktoren zu steuern oder Regeln zu verwalten.
+#### Benutzung des CLI
+Sobald das CLI gestartet ist, können Benutzer verschiedene Befehle eingeben, um mit dem System zu interagieren. Eine Hilfe-Funktion (help) im CLI bietet Anleitungen zu verfügbaren Kommandos und deren Nutzung.
+#### Programm beenden
+Um das Smart Home System zu beenden, geben Sie einfach den Befehl exit in das CLI ein. Dieser Befehl beendet das Programm sicher und stellt sicher, dass alle Prozesse ordnungsgemäß geschlossen werden.
 
 ## Weitere Schritte

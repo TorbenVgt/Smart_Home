@@ -110,3 +110,54 @@ Alle Benutzer des Systems interagieren über das gleiche Command Line Interface 
 Es gibt keine differenzierten Zugriffsrechte oder unterschiedliche Benutzerebenen. Jeder Benutzer kann das System vollumfänglich nutzen, was die Bedienung vereinfacht und die Einarbeitungszeit minimiert.
 #### Homogene Nutzungserfahrung: 
 Die Entscheidung, keine unterschiedlichen Benutzerrollen zu implementieren, zielt darauf ab, eine homogene Nutzungserfahrung für alle Anwender zu schaffen. Dies ist besonders vorteilhaft in einem akademischen Umfeld, wo Flexibilität und einfacher Zugang zu Lehr- und Forschungstools gewünscht sind.
+
+## 4. Design und Konzeption
+   Das Design und die Konzeption des Smart Home Systems an der FHDW basieren auf einer durchdachten und skalierbaren Softwarearchitektur, die darauf abzielt, eine flexible Plattform für Lehr- und Forschungszwecke zu bieten. Dieser Abschnitt der Dokumentation beschreibt die zentralen Designentscheidungen, die Bausteinsicht und das UML-Diagramm, das die Systemarchitektur visualisiert.
+
+### 4.1 Bausteinsicht
+Die Bausteinsicht des Smart Home Systems visualisiert die wichtigsten Softwarekomponenten und ihre Beziehungen zueinander. Hier wird die Hierarchie und Kommunikation zwischen verschiedenen Elementen des Systems dargestellt, die in der Systemarchitektur definiert sind.
+
+![Bausteinansicht.png](documentation/Bausteinsicht.png)
+
+#### Hauptkomponenten und ihre Funktionen
+**IBuilding, IFloor, IRoom:** Diese Schnittstellen definieren die grundlegenden Eigenschaften und Methoden für Gebäude, Etagen und Räume. Sie ermöglichen eine abstrakte Interaktion mit den physischen Strukturen innerhalb des Systems.
+
+**Building, Floor, Room:** Konkrete Implementierungen der IBuilding, IFloor und IRoom Schnittstellen. Diese Klassen sind verantwortlich für die Verwaltung der spezifischen Daten und Verhaltensweisen ihrer jeweiligen physischen Gegenstücke.
+
+**IDevice, IActor:** Schnittstellen, die das Verhalten von Geräten und Aktoren im System definieren. IDevice bietet eine generelle Abstraktion für Geräte, während IActor speziell für Aktoren wie Lichtschalter oder Heizungen verwendet wird.
+
+**Device, Actor:** Konkrete Implementierungen der IDevice und IActor Schnittstellen. Device dient als Basis für spezifischere Geräte, während Actor spezifische Funktionen für die Steuerung und Verwaltung von Aktoren bereitstellt.
+**RuleManager:** Eine zentrale Komponente, die für das Management der Regeln im System zuständig ist. Sie koordiniert die Ausführung von Regeln basierend auf den von Sensoren gelieferten Daten oder anderen Ereignissen.
+**IRule:** Eine Schnittstelle, die das erforderliche Verhalten für Regeln im System definiert. Regeln können auf Basis von Sensorwerten, zeitlichen Bedingungen oder manuellen Auslösern aktiviert werden.
+**TemperatureControlRule**: Eine konkrete Implementierung der IRule-Schnittstelle, speziell entwickelt zur Temperaturkontrolle innerhalb des Systems. Diese Regel nutzt Daten von Temperatursensoren zur Steuerung von Heizungen oder Klimaanlagen.
+**ConsoleInterface:** Die Benutzerschnittstelle des Systems, implementiert als Command Line Interface. Diese Komponente ermöglicht die direkte Interaktion mit dem System durch Befehlseingaben, um Gebäude, Etagen oder Räume zu verwalten und Geräte zu steuern.
+**HandleCommands:** Eine Hilfsklasse, die für das Verarbeiten von Benutzerbefehlen über das ConsoleInterface verantwortlich ist. Sie interpretiert die Eingaben und leitet entsprechende Aktionen ein.
+
+#### Spezifische Geräteklassen
+Switch, VentilationDevice, TemperatureSensor, HumidityDevice, Light, Heater: Diese Klassen sind spezialisierte Implementierungen von Device oder Actor, die jeweils spezifische Funktionen in Bezug auf ihre Aufgabe im System erfüllen. Beispielsweise kann ein Switch das Ein- und Ausschalten von Licht regeln, während ein TemperatureSensor Temperaturdaten liefert.
+Diese Bausteinsicht bietet einen umfassenden Überblick über die Architektur und die einzelnen Komponenten des Smart Home Systems, die für die Erfüllung der spezifischen Anforderungen des Projekts essentiell sind. Sie verdeutlicht, wie die Komponenten miteinander interagieren und zusammenarbeiten, um eine flexible und erweiterbare Plattform für das Smart Home zu schaffen.
+
+Modularität und Wiederverwendbarkeit: Die Verwendung von Schnittstellen wie IBuilding, IFloor, IRoom, IDevice und IActor fördert die Wiederverwendbarkeit von Code und erleichtert die Erweiterung des Systems. Neue Gerätetypen oder Aktoren können durch das Implementieren der entsprechenden Schnittstellen leicht hinzugefügt werden.
+Zentrale Verwaltung durch RuleManager: Der RuleManager spielt eine zentrale Rolle im System, indem er die Regeln verwaltet und deren Ausführung steuert. Diese zentrale Steuerung ermöglicht es, dass Regeln systemweit konsistent und effizient angewendet werden.
+Interaktion durch ConsoleInterface: Das ConsoleInterface ermöglicht eine direkte und einfache Interaktion mit dem System, was besonders nützlich ist, um das System für Lehr- und Forschungszwecke anzupassen und zu steuern.
+Diese Architektur bietet eine klare Trennung der Verantwortlichkeiten und fördert eine hohe Kohäsion innerhalb der Komponenten, was die Wartung und Erweiterung des Systems erleichtert.
+
+### 4.2 UML-Diagramm
+(UML-Diagramm hier einfügen)
+
+Das UML-Diagramm bietet eine detaillierte visuelle Darstellung der Beziehungen und Abhängigkeiten zwischen den verschiedenen Komponenten und Klassen des Systems. Es verdeutlicht, wie Daten und Kontrolle durch das System fließen und illustriert die Verbindungen zwischen den einzelnen Modulen.
+
+Beschreibung des UML-Diagramms: (Hier eine detaillierte Beschreibung des UML-Diagramms einfügen, die die Beziehungen zwischen den Klassen, die Vererbungshierarchien und die Nutzung von Schnittstellen beschreibt. Besonders wichtig ist es, auf die Interaktionen zwischen den Klassen im Kontext von Ereignissen und Datenflüssen einzugehen.)
+
+### 4.3 Technologische Wahl
+Die Wahl der Technologie für das Smart Home System basiert auf Java, einer robusten und weit verbreiteten Programmiersprache, die sich ideal für die Entwicklung komplexer Softwaresysteme eignet. Java wurde aufgrund seiner starken Objektorientierung, der guten Unterstützung durch Entwicklungswerkzeuge und der umfangreichen Community gewählt. Diese Eigenschaften sind besonders wichtig für ein akademisches Umfeld, in dem Zuverlässigkeit, Wartbarkeit und die Möglichkeit zur Zusammenarbeit im Vordergrund stehen.
+
+### Vorteile von Java:
+
+* **Plattformunabhängigkeit:** Java-Programme sind plattformunabhängig, was bedeutet, dass das Smart Home System auf verschiedenen Hardware- und Betriebssystemkonfigurationen ohne Modifikation ausgeführt werden kann. Dies ist besonders nützlich für ein System, das potenziell auf unterschiedliche physische Standorte erweitert werden könnte.
+* **Gemeinschaft und Ressourcen:** Es gibt eine große Entwicklergemeinschaft und eine Fülle von Ressourcen für Java-Entwickler, was die Problembehebung und den Austausch von Best Practices erleichtert.
+* **Sicherheit und Zuverlässigkeit:** Java ist bekannt für seine Sicherheitsfeatures und seine robuste Laufzeitumgebung, was es zu einer sicheren Wahl für das Backend eines Smart Home Systems macht.
+* 
+Für die Entwicklung wurde eine IDE IntelliJ IDEA verwendet, die speziell auf Java zugeschnitten ist und Entwicklern leistungsstarke Werkzeuge für die Codeverwaltung, das Debugging und das Testen bieten.
+
+Zusammenfassend ermöglicht Java die Entwicklung eines stabilen und skalierbaren Smart Home Systems, das die Anforderungen an ein modernes, erweiterbares und lehrreiches Forschungstool erfüllt. Die Entscheidung für Java trägt dazu bei, dass das System nicht nur funktional, sondern auch zukunftssicher und anpassungsfähig ist.

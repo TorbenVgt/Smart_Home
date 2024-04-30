@@ -48,6 +48,6 @@ Die Entscheidungsfindung basiert auf einer Reihe von definierten Regeln, die sim
 
 ### Kontextdiagramm
 
-[Kontextdiagramm.drawio](..%2F..%2FDesktop%2FKontextdiagramm.drawio)
+![Kontextdiagramm.png](documentation/Kontextdiagramm.png)
 
 # Test

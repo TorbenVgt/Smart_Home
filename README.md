@@ -143,11 +143,23 @@ Interaktion durch ConsoleInterface: Das ConsoleInterface ermöglicht eine direkt
 Diese Architektur bietet eine klare Trennung der Verantwortlichkeiten und fördert eine hohe Kohäsion innerhalb der Komponenten, was die Wartung und Erweiterung des Systems erleichtert.
 
 ### 4.2 UML-Diagramm
-(UML-Diagramm hier einfügen)
+![UML.png](documentation/UML.png)
 
-Das UML-Diagramm bietet eine detaillierte visuelle Darstellung der Beziehungen und Abhängigkeiten zwischen den verschiedenen Komponenten und Klassen des Systems. Es verdeutlicht, wie Daten und Kontrolle durch das System fließen und illustriert die Verbindungen zwischen den einzelnen Modulen.
+Das UML-Diagramm gibt einen detaillierten Überblick über die Klassenstruktur und Beziehungen innerhalb des Smart Home Systems. Es illustriert die Objektorientierung und das Design des Systems und zeigt die Verbindungen zwischen Schnittstellen und Implementierungen auf. Hier eine Beschreibung des UML-Diagramms:
 
-Beschreibung des UML-Diagramms: (Hier eine detaillierte Beschreibung des UML-Diagramms einfügen, die die Beziehungen zwischen den Klassen, die Vererbungshierarchien und die Nutzung von Schnittstellen beschreibt. Besonders wichtig ist es, auf die Interaktionen zwischen den Klassen im Kontext von Ereignissen und Datenflüssen einzugehen.)
+#### Hauptkomponenten und Klassen:
+
+* IBuilding, IFloor, IRoom: Diese Interfaces definieren die Methoden, die von den entsprechenden Klassen Building, Floor und Room implementiert werden. Sie ermöglichen grundlegende Operationen wie das Hinzufügen oder Abrufen von Etagen und Räumen sowie das Setzen und Abrufen von Eigenschaften wie Gebäudenummer oder Raumname.
+* Building, Floor, Room: Diese Klassen sind die konkreten Implementierungen der zuvor genannten Schnittstellen und bieten Funktionalitäten zur Verwaltung der physischen Strukturen des Gebäudes. Building verwaltet mehrere Floors, während Floor mehrere Rooms verwaltet, was die hierarchische Struktur des Gebäudemanagements widerspiegelt.
+* Device, Actor, Switch, VentilationDevice, TemperatureSensor, HumidityDevice, Heater, Light: Diese Klassen repräsentieren die Geräte und Aktoren im System. Device ist die Basisklasse für alle Geräte, während Actor eine spezifische Klasse für Aktoren darstellt, die Aktionen ausführen können, wie z.B. das Aktivieren oder Deaktivieren von Geräten. Spezialisierte Geräte wie Switch, Heater, oder Light haben spezifische Funktionen, die ihre jeweilige Rolle im System definieren.
+* RuleManager und Rule: RuleManager ist zuständig für die Verwaltung und Ausführung von Regeln innerhalb des Systems. Rule ist ein Interface, das von spezifischen Regelklassen wie TemperatureControlRule implementiert wird. Diese Klassen definieren spezifische Regeln, die basierend auf Sensordaten oder anderen Bedingungen aktiviert werden können.
+* ConsoleInterface und HandleCommands: ConsoleInterface ist die Klasse, die für die Interaktion des Benutzers mit dem System über ein Kommandozeileninterface verantwortlich ist. HandleCommands verarbeitet die über das Interface eingegebenen Befehle und führt entsprechende Aktionen aus, wie z.B. das Steuern von Geräten oder das Anzeigen von Systeminformationen.
+
+#### Beziehungen zwischen den Klassen:
+* Vererbung und Implementierung: Die Verwendung von Interfaces wie IBuilding und IDevice ermöglicht es, dass verschiedene Klassen wie Building oder Device bestimmte Methoden implementieren müssen, was eine konsistente Nutzung dieser Objekte im System gewährleistet.
+* Aggregation und Komposition: Die Beziehungen zwischen Building, Floor und Room sind Beispiele für Aggregation, da ein Building mehrere Floors enthält, aber ohne diese weiter existieren kann. Die Verwendung von Komposition wäre bei der Verwaltung von Devices innerhalb eines Rooms zu sehen, wo das Löschen eines Rooms auch die darin enthaltenen Devices betrifft.
+* Assoziation: Klassen wie RuleManager und die verschiedenen Rule-Implementierungen zeigen Assoziationsbeziehungen, die anzeigen, wie Regeln im System verwaltet und ausgeführt werden.
+* Dieses UML-Diagramm ist zentral für das Verständnis der Funktionsweise und der strukturellen Organisation des Smart Home Systems, da es nicht nur die Einzelteile, sondern auch deren Interaktionen verdeutlicht.
 
 ### 4.3 Technologische Wahl
 Die Wahl der Technologie für das Smart Home System basiert auf Java, einer robusten und weit verbreiteten Programmiersprache, die sich ideal für die Entwicklung komplexer Softwaresysteme eignet. Java wurde aufgrund seiner starken Objektorientierung, der guten Unterstützung durch Entwicklungswerkzeuge und der umfangreichen Community gewählt. Diese Eigenschaften sind besonders wichtig für ein akademisches Umfeld, in dem Zuverlässigkeit, Wartbarkeit und die Möglichkeit zur Zusammenarbeit im Vordergrund stehen.

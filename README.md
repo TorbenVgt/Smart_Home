@@ -50,4 +50,27 @@ Die Entscheidungsfindung basiert auf einer Reihe von definierten Regeln, die sim
 
 ![Kontextdiagramm.png](documentation/Kontextdiagramm.png)
 
-# Test
+
+Das Kontextdiagramm visualisiert die Interaktionen und Datenflüsse innerhalb des Smart Home Systems, das ausschließlich mit simulierten Komponenten arbeitet. Folgende Hauptkomponenten und ihre Verbindungen sind dargestellt:
+
+#### Mensch (Nutzer):
+**Position:** Links neben der CLI (Command Line Interface).
+**Beschreibung:** Der Nutzer repräsentiert die Person, die Interaktionen mit dem System über die CLI durchführt. Diese Darstellung symbolisiert die Schnittstelle, über welche Nutzereingaben erfolgen und Informationen vom System empfangen werden.
+#### Command Line Interface (CLI):
+**Position:** Zentral im unteren Bereich des Diagramms, direkt verbunden mit dem Menschen (Nutzer) und der internen Steuerungslogik.
+**Beschreibung:** Das CLI ist die primäre Benutzerschnittstelle, über die der Nutzer Befehle eingibt und Rückmeldungen vom System erhält. Es dient als Vermittler zwischen dem Menschen und der Steuerungslogik des Smart Home Systems.
+#### Smart Home System:
+**Position:** Umfasst die zentrale und obere Bereiche des Diagramms.
+**Beschreibung:** Innerhalb dieser Systemgrenze befinden sich die simulierten Sensoren, Aktoren, die Steuerungslogik und die Datenverarbeitung. Das gesamte System interagiert intern, um eine simulierte Gebäudeautomation zu realisieren.
+#### Dummy-Sensoren:
+**Position:** Innerhalb der Systemgrenze, meist im oberen Bereich.
+**Beschreibung:** Diese Komponenten simulieren verschiedene Arten von Sensordaten (wie Temperatur, Licht, Bewegung), die zur Steuerungslogik gesendet werden.
+#### Simulierte Aktoren:
+**Position:** Ebenfalls innerhalb der Systemgrenze, nahe den Sensoren.
+**Beschreibung:** Aktoren reagieren auf Befehle von der Steuerungslogik, um simulierte Aktionen wie Lichtsteuerung oder Temperaturanpassungen durchzuführen.
+#### Steuerungslogik:
+**Position:** Im Zentrum der Systemgrenze, direkt verbunden mit Sensoren, Aktoren und dem CLI.
+**Beschreibung:** Diese Kernkomponente verarbeitet alle Eingaben von Sensoren und der CLI, trifft Entscheidungen und sendet entsprechende Befehle an die Aktoren. Sie ist das Gehirn des Systems.
+#### Datenverarbeitung:
+**Position:** In der Nähe der Steuerungslogik innerhalb der Systemgrenze.
+**Beschreibung:** Diese Komponente handhabt interne Datenoperationen, speichert Testergebnisse und Verlaufsinformationen, die für Testszenarien innerhalb des simulierten Systems benötigt werden.

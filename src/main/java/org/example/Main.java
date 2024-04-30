@@ -1,9 +1,7 @@
 package org.example;
 
 import environment.building.Building;
-import environment.device.Heater;
-import environment.device.Switch;
-import environment.device.TemperatureSensor;
+import environment.device.*;
 import environment.floor.Floor;
 import environment.room.Room;
 import gui.ConsoleInterface;
@@ -17,11 +15,14 @@ public class Main {
         // Erstellen von Geräten (Sensoren und Aktoren)
         TemperatureSensor tempSensor1 = new TemperatureSensor("TempSensor1", "10");
         Heater heater1 = new Heater("Heater1", "OFF");
-
+        VentilationDevice ventDev1 = new VentilationDevice("VentilationDevice1", "20");
+        HumidityDevice humDev1 = new HumidityDevice("HumidityDevice1", "1000");
         // Erstellen eines Raumes und Hinzufügen von Geräten
         Room room1 = new Room("Konferenzraum");
         room1.addDevice(tempSensor1);
         room1.addDevice(heater1);
+        room1.addDevice(ventDev1);
+        room1.addDevice(humDev1);
 
         // Erstellen einer Etage und Hinzufügen des Raumes
         Floor floor1 = new Floor(1);

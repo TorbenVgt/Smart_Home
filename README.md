@@ -217,9 +217,109 @@ Zusammenfassend ermöglicht Java die Entwicklung eines stabilen und skalierbaren
 
 ### Aktoren & Sensoren
 
+#### Allgemeine Architektur
+Alle Aktoren und Sensoren im System basieren auf einem gemeinsamen Device Interface, das grundlegende Methoden zur Interaktion und zum Betrieb der Geräte definiert. Dieses Interface gewährleistet, dass alle Geräte im System auf eine konsistente Weise gesteuert und abgefragt werden können, unabhängig von ihrer spezifischen Funktion oder Technologie.
+
+Device Interface:
+
+operate(): Führt eine spezifische Operation des Geräts aus, wie z.B. das Einschalten eines Lichts oder das Messen der Temperatur.
+getStatus(): Liefert den aktuellen Status des Geräts zurück.
+setStatus(String status): Setzt den Status des Geräts basierend auf dem übergebenen Wert.
+Um die Implementierung und Wartung zu vereinfachen, erweitern spezifische Aktoren und Sensoren eine abstrakte Klasse AbstractDevice, die das Device Interface implementiert. Diese Klasse bietet eine grundlegende Implementierung der Interface-Methoden und kann von konkreten Geräteklassen nach Bedarf erweitert und angepasst werden.
+
+#### Aktoren
+Aktoren sind Geräte, die physische Aktionen ausführen, um auf Änderungen im System oder Benutzeranweisungen zu reagieren. Einige Beispiele für Aktoren im System umfassen:
+
+* Licht: Steuert das Ein- und Ausschalten von Beleuchtungseinrichtungen.
+* Heizung: Reguliert die Temperatur durch Einstellen der Heizungsstufen.
+* Rolladenmotor: Kontrolliert die Position von Jalousien oder Rolläden zur Licht- und Wärmeregulierung.
+* Türschloss: Öffnet oder schließt physische Sicherheitsschlösser.
+
+Jeder Aktor implementiert zusätzliche spezifische Methoden für seine Funktionen, wie z.B. adjustTemperature(int degree) für Heizungen oder toggleLight(boolean on) für Lichtsysteme.
+
+#### Sensoren
+Sensoren dienen dazu, Informationen über die Umgebung oder den Zustand des Systems zu sammeln. Sie liefern Daten, die für die Entscheidungsfindung innerhalb des Regelsystems verwendet werden können. Beispiele für Sensoren im System sind:
+
+* Temperatursensor: Misst die Umgebungstemperatur und gibt diese in Celsius zurück.
+* Feuchtigkeitssensor: Erfasst den Feuchtigkeitsgehalt der Luft.
+* Lichtsensor: Misst die Lichtintensität in einem Raum.
+* Anwesenheitssensor: Detektiert die Anwesenheit von Personen in einem Bereich.
+
+Diese Sensoren verwenden das Device Interface, um ihre Messwerte zugänglich zu machen, und können spezifische Methoden wie readTemperature() oder detectPresence() beinhalten.
+
+#### Integration und Nutzung
+Die Aktoren und Sensoren sind so konzipiert, dass sie leicht in das Smart Home System integriert werden können. Durch die Definition in der Konfigurationsdatei sind Geräte bestimmten Räumen oder Bereichen zugeordnet. Das System kann die Geräte über das Command Line Interface steuern oder automatisch über das Regelsystem basierend auf den von den Sensoren gelieferten Daten reagieren.
+
+### Gebäuden, Etagen und Räumen
+
+Das Smart Home System ist strukturiert in einer hierarchischen Architektur bestehend aus Gebäuden (Buildings), Etagen (Floors) und Räumen (Rooms), wobei diese Struktur eine flexible und erweiterbare Handhabung der verschiedenen Bereiche und deren spezifischen Anforderungen ermöglicht.
+
+#### Interface und Implementierung
+Jeder dieser Bereiche ist durch ein spezifisches Interface definiert – IBuilding, IFloor, und IRoom. Diese Interfaces stellen sicher, dass alle implementierenden Klassen die notwendigen Methoden bereitstellen, um die Funktionalität des Systems einheitlich zu unterstützen und bei Bedarf erweitert werden können.
+
+* IBuilding Interface:
+Methoden um Etagen hinzuzufügen oder abzufragen.
+
+* IFloor Interface:
+Methoden zur Verwaltung der Räume innerhalb der Etage.
+* IRoom Interface:
+Methoden zur Verwaltung und Interaktion mit den spezifischen Sensoren und Aktoren eines Raumes.
+
+#### Klassenstruktur
+* Building: Implementiert das IBuilding Interface und verwaltet eine Liste von Etagen. Jedes Gebäude kann mehrere Etagen haben, die jeweils spezifische Räumlichkeiten und Funktionen repräsentieren. Die Klasse bietet Methoden, um Etagen hinzuzufügen, zu entfernen oder spezifische Etagen abzufragen.
+* Floor: Implementiert das IFloor Interface und hält eine Liste von Räumen. Eine Etage dient als organisatorische Einheit innerhalb eines Gebäudes und beherbergt verschiedene Räume, die jeweils unterschiedliche Funktionen und Geräte haben können.
+* Room: Implementiert das IRoom Interface und ist zuständig für die Verwaltung der in ihm befindlichen Sensoren und Aktoren. Jeder Raum im System ist mit spezifischen Sensoren und Aktoren ausgestattet, die durch das Smart Home System kontrolliert und überwacht werden können.
+* Funktionalität und Hierarchie
+
+Diese hierarchische Anordnung erlaubt eine strukturierte Verwaltung und einfache Navigation innerhalb des Systems. Durch die Implementierung von Interfaces und abstrakten Klassen ist das System bereit für Erweiterungen, wie zum Beispiel die Hinzufügung neuer Gebäudetypen oder Raumfunktionen, ohne die bestehende Systemlogik grundlegend zu ändern.
+
+Zuweisung von Geräten: In der Konfigurationsdatei werden Räumen spezifische Sensoren und Aktoren zugewiesen. Diese Zuordnung ermöglicht es dem System, die Geräte effektiv zu verwalten und den Benutzern die Kontrolle über spezifische Funktionen zu geben.
+Visualisierung und Kontrolle: Benutzer können über das Command Line Interface auf eine Liste der Gebäude, deren Etagen und die darin enthaltenen Räume zugreifen. Sie können die aktuellen Werte der Sensoren abfragen oder Aktoren je nach Bedarf steuern. Diese Funktionalität ist besonders nützlich für Lehr- und Forschungszwecke, da sie eine detaillierte Steuerung und Überwachung der Umgebung ermöglicht.
+
 ### Regelsysteme
+#### Konzept und Implementierung
+Das Regelsystem basiert auf einer flexiblen Architektur, die es erlaubt, Regeln als Klassen innerhalb des Systems zu definieren. Diese Klassen implementieren das IRule Interface, welches grundlegende Methoden zur Aktivierung, Deaktivierung und Ausführung von Regeln vorschreibt.
+
+IRule Interface:
+
+* enable(): Aktiviert die Regel, sodass sie bei entsprechenden Bedingungen ausgeführt wird.
+* disable(): Deaktiviert die Regel, sodass keine Ausführung stattfindet.
+* execute(): Führt die Aktionen der Regel aus, basierend auf den definierten Bedingungen.
+
+Die Regeln werden durch den RuleManager verwaltet, einer zentralen Komponente, die für das Laden, Verwalten und Ausführen aller im System definierten Regeln zuständig ist. Der RuleManager sorgt dafür, dass die Regeln ordnungsgemäß aktiviert und basierend auf den Eingaben von Sensoren oder anderen Ereignissen ausgeführt werden.
+
+Beispiele für Regelimplementierungen
+Die Regeln können auf eine Vielzahl von Bedingungen reagieren, einschließlich Sensorwerten, Zeitplänen oder manuellen Auslösern. Hier einige Beispiele für typische Regeln im System:
+
+* TemperaturControlRule: Diese Regel könnte automatisch die Heizung in einem Raum ein- oder ausschalten, basierend auf der gemessenen Temperatur und einem vordefinierten Temperaturziel.
+* LightControlRule: Eine Regel, die Beleuchtung in Abhängigkeit von der Tageszeit oder der Anwesenheit von Personen steuert.
+* SecurityRule: Eine Sicherheitsregel, die Türen automatisch verriegelt, wenn keine Personen im Gebäude erkannt werden.
+
+Jede Regel verwendet Sensordaten und Steuerelemente für Aktoren, um spezifische Aktionen durchzuführen, die zur Effizienz und zum Komfort im Gebäude beitragen.
+
+#### Flexibilität und Erweiterbarkeit
+Die Architektur des Regelsystems ist darauf ausgelegt, einfach erweitert zu werden. Neue Regeln können durch das Hinzufügen neuer Klassen, die das IRule Interface implementieren, ins System eingeführt werden. Diese Flexibilität erleichtert die Anpassung des Systems an sich ändernde Anforderungen oder neue technologische Möglichkeiten, ohne dass umfangreiche Änderungen an der bestehenden Systemlogik notwendig sind.
+
+Integration und Interaktion
+Regeln können über das Command Line Interface aktiviert oder deaktiviert werden, was den Benutzern ermöglicht, die Automatisierung des Systems nach Bedarf zu konfigurieren. Diese Interaktion ist besonders wichtig, um das System an spezifische Szenarien oder Benutzerpräferenzen anzupassen.
+
 
 ### Command Line Interface
+#### Hauptfunktionen des CLI
+Das CLI unterstützt eine Vielzahl von Funktionen, die es den Nutzern ermöglichen, eine detaillierte Steuerung und Überwachung des Systems durchzuführen:
+
+* Anzeige der Gebäudestruktur: Nutzer können sich eine Liste aller Gebäude und der darin enthaltenen Etagen und Räume anzeigen lassen. Diese Funktionalität ist besonders nützlich für die Navigation innerhalb des Systems und hilft Benutzern, den Überblick über die komplexe Struktur vieler Gebäude zu behalten.
+* Sensorwerte abfragen: Das CLI ermöglicht es den Benutzern, aktuelle Werte der in den Räumen installierten Sensoren abzurufen. Diese Informationen können auf der Ebene einzelner Räume oder für bestimmte Sensortypen über alle Räume hinweg angezeigt werden, wie z.B. die Anzeige aller Temperaturwerte in einem bestimmten Gebäude oder einer Etage.
+* Steuerung der Aktoren: Benutzer können über das CLI Aktoren manuell ansteuern, wie z.B. das Einschalten der Beleuchtung oder das Einstellen der Heizungstemperatur in spezifischen Räumen oder über ganze Etagen und Gebäude hinweg. Dies erlaubt eine flexible Reaktion auf veränderte Anforderungen oder Bedingungen innerhalb der Gebäude.
+* Regeln aktivieren oder deaktivieren: Das System ermöglicht das Aktivieren oder manuelle Auslösen von Regeln über das CLI. Benutzer können spezifische Regeln aktivieren oder deaktivieren, was eine anpassbare Kontrolle über die automatisierten Funktionen des Systems bietet.
+#### Technische Umsetzung
+Das CLI ist als integraler Bestandteil des Systems konzipiert und eng mit der Systemlogik verknüpft. Die Implementierung erfolgt in Java, wobei das CLI auf robuste Klassen und Methoden zurückgreift, die eine sichere und effiziente Verarbeitung von Benutzereingaben gewährleisten. Die Befehlsverarbeitung ist so gestaltet, dass sie Fehler tolerant ist und Benutzern klare Rückmeldungen zu ihren Aktionen gibt.
+
+* ConsoleInterface Klasse: Diese Klasse handhabt die gesamte Interaktion mit dem Benutzer über das Terminal. Sie nimmt Benutzereingaben entgegen und leitet die entsprechenden Aktionen ein, wie z.B. das Abrufen von Sensorwerten oder das Steuern von Aktoren.
+* HandleCommands: Eine Hilfsklasse, die für das Parsen und Ausführen der durch das CLI erhaltenen Kommandos verantwortlich ist. Diese Klasse arbeitet eng mit dem RuleManager und anderen Systemkomponenten zusammen, um die korrekte Ausführung der Befehle zu gewährleisten.
+Benutzerfreundlichkeit und Flexibilität
+
+Das Design des CLI ist darauf ausgerichtet, eine benutzerfreundliche und intuitive Bedienung zu ermöglichen. Die Kommandos sind logisch strukturiert, und das System bietet Hilfe und Anleitungen zur Nutzung der verschiedenen Funktionen. Diese Zugänglichkeit macht das CLI zu einem wertvollen Werkzeug für alle Benutzer des Smart Home Systems, von den Systemadministratoren bis hin zu Forschern und Lehrenden, die das System für ihre Projekte nutzen.
 
 ## Installationsanleitung
 

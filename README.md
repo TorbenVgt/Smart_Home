@@ -1,3 +1,44 @@
+# Smart Home System
+### Autor:
+* Torben Voigt
+## Inhaltsverzeichnis
+-[Einleitung](#einleitung)
+
+# Smart Home System
+## Autor:
+- Torben Voigt
+# Inhaltsverzeichnis
+- [Einleitung](#einleitung)
+    - [Überblick über das Smart Home System](#überblick-über-das-smart-home-system)
+    - [Zielsetzung dieser Dokumentation](#zielsetzung-dieser-dokumentation)
+    - [Entstehungshintergrund des Smart Home Systems](#entstehungshintergrund-des-smart-home-systems)
+    - [Definition der Systemgrenzen](#definition-der-systemgrenzen)
+    - [Fachlicher Kontext](#fachlicher-kontext)
+    - [Externe Kommunikationspartner](#externe-kommunikationspartner)
+        - [Dummy-Sensoren und Aktoren](#dummy-sensoren-und-aktoren)
+        - [Visualisierungsinterface](#visualisierungsinterface)
+    - [Fachliche Schnittstellen](#fachliche-schnittstellen)
+        - [Nutzereingabe](#nutzereingabe)
+        - [Systemausgabe](#systemausgabe)
+        - [Simulierte Steuerbefehle und Sensorabfragen](#simulierte-steuerbefehle-und-sensorabfragen)
+    - [Technischer Kontext](#technischer-kontext)
+    - [Technische Schnittstellen](#technische-schnittstellen)
+        - [Terminal](#terminal)
+- [Anforderungsanalyse](#anforderungsanalyse)
+    - [Funktionale Anforderungen](#funktionale-anforderungen)
+    - [Nicht-funktionale Anforderungen](#nicht-funktionale-anforderungen)
+    - [Benutzerrollen und Interaktionen](#benutzerrollen-und-interaktionen)
+- [Design und Konzeption](#design-und-konzeption)
+    - [Bausteinsicht](#bausteinsicht)
+    - [UML-Diagramm](#uml-diagramm)
+    - [Technologische Wahl](#technologische-wahl)
+- [Dokumentation](#dokumentation)
+    - [Aktoren & Sensoren](#aktoren--sensoren)
+    - [Regelsysteme](#regelsysteme)
+    - [Command Line Interface](#command-line-interface)
+- [Installationsanleitung](#installationsanleitung)
+- [Weitere Schritte](#weitere-schritte)
+## Einleitung
 ### Überblick über das Smart Home System
 Dieses Dokument dient als umfassender Leitfaden für das im Rahmen meines Studiums entwickelte Smart Home System an der FHDW. Es zielt darauf ab, eine detaillierte Einsicht in die Struktur und Funktionalität des Systems zu bieten, sowie die technologischen Entscheidungen, die zur Realisierung des Projekts getroffen wurden, zu erläutern.
 
@@ -18,19 +59,19 @@ Der fachliche Kontext des Smart Home Systems beinhaltet die Interaktionen innerh
 ### Externe Kommunikationspartner
 Das System nutzt keine realen externen Geräte oder Sensoren. Stattdessen verwendet es simulierte Schnittstellen, die wie folgt funktionieren:
 
-#### Dummy-Sensoren und Aktoren: 
+#### Dummy-Sensoren und Aktoren
 Das System generiert selbst Daten von simulierten Sensoren wie Temperaturfühlern, Lichtsensoren und Bewegungsdetektoren. Diese Daten werden verwendet, um Steuerbefehle an simulierte Aktoren wie Heizungen, Lichter und Türschlösser zu senden.
-#### Visualisierungsinterface: 
+#### Visualisierungsinterface
 Alle Interaktionen mit dem Nutzer erfolgen über ein einfaches Command Line Interface, das den simulierten Zustand des Systems visualisiert und Nutzerbefehle für Testszenarien entgegennimmt.
 
 ### Fachliche Schnittstellen
 Die fachlichen Schnittstellen des simulierten Systems umfassen:
 
-#### Nutzereingabe: 
+#### Nutzereingabe
 Über das Terminal können Nutzer Befehle eingeben, die normalerweise die Aktoren steuern oder Informationen über die Zustände der Sensoren liefern würden.
-#### Systemausgabe: 
+#### Systemausgabe
 Simulierte Antworten und Zustände des Systems werden textbasiert über das Terminal ausgegeben.
-#### Simulierte Steuerbefehle und Sensorabfragen: 
+#### Simulierte Steuerbefehle und Sensorabfragen
 Das System verwendet ein internes Regelwerk, um basierend auf simulierten Sensorwerten automatisierte Aktionen zu steuern oder auf Nutzereingaben zu reagieren.
 
 ### Technischer Kontext
@@ -39,11 +80,11 @@ Der technische Kontext beschreibt die internen technischen Verbindungen und Schn
 ### Technische Schnittstellen
 Die technischen Schnittstellen des Smart Home Systems umfassen:
 
-#### Terminal: 
+#### Terminal
 Das Terminal dient als primäre Schnittstelle für den Endnutzer, um mit dem simulierten System zu interagieren.
-#### Interne Logikverbindungen: 
+#### Interne Logikverbindungen
 Das System interagiert intern mit simulierten Netzwerkverbindungen, die es ermöglichen, Daten zwischen den simulierten Sensoren und Aktoren auszutauschen.
-#### Datenverarbeitungslogik: 
+#### Datenverarbeitungslogik
 Die Entscheidungsfindung basiert auf einer Reihe von definierten Regeln, die simulieren, wie das System auf Änderungen in den simulierten Sensorwerten reagieren würde.
 
 ### Kontextdiagramm
@@ -53,68 +94,68 @@ Die Entscheidungsfindung basiert auf einer Reihe von definierten Regeln, die sim
 
 Das Kontextdiagramm visualisiert die Interaktionen und Datenflüsse innerhalb des Smart Home Systems, das ausschließlich mit simulierten Komponenten arbeitet. Folgende Hauptkomponenten und ihre Verbindungen sind dargestellt:
 
-#### Mensch (Nutzer):
+#### Mensch (Nutzer)
 **Position:** Links neben der CLI (Command Line Interface).
 **Beschreibung:** Der Nutzer repräsentiert die Person, die Interaktionen mit dem System über die CLI durchführt. Diese Darstellung symbolisiert die Schnittstelle, über welche Nutzereingaben erfolgen und Informationen vom System empfangen werden.
-#### Command Line Interface (CLI):
+#### Command Line Interface (CLI)
 **Position:** Zentral im unteren Bereich des Diagramms, direkt verbunden mit dem Menschen (Nutzer) und der internen Steuerungslogik.
 **Beschreibung:** Das CLI ist die primäre Benutzerschnittstelle, über die der Nutzer Befehle eingibt und Rückmeldungen vom System erhält. Es dient als Vermittler zwischen dem Menschen und der Steuerungslogik des Smart Home Systems.
-#### Smart Home System:
+#### Smart Home System
 **Position:** Umfasst die zentrale und obere Bereiche des Diagramms.
 **Beschreibung:** Innerhalb dieser Systemgrenze befinden sich die simulierten Sensoren, Aktoren, die Steuerungslogik und die Datenverarbeitung. Das gesamte System interagiert intern, um eine simulierte Gebäudeautomation zu realisieren.
-#### Dummy-Sensoren:
+#### Dummy-Sensoren
 **Position:** Innerhalb der Systemgrenze, meist im oberen Bereich.
 **Beschreibung:** Diese Komponenten simulieren verschiedene Arten von Sensordaten (wie Temperatur, Licht, Bewegung), die zur Steuerungslogik gesendet werden.
-#### Simulierte Aktoren:
+#### Simulierte Aktoren
 **Position:** Ebenfalls innerhalb der Systemgrenze, nahe den Sensoren.
 **Beschreibung:** Aktoren reagieren auf Befehle von der Steuerungslogik, um simulierte Aktionen wie Lichtsteuerung oder Temperaturanpassungen durchzuführen.
-#### Steuerungslogik:
+#### Steuerungslogik
 **Position:** Im Zentrum der Systemgrenze, direkt verbunden mit Sensoren, Aktoren und dem CLI.
 **Beschreibung:** Diese Kernkomponente verarbeitet alle Eingaben von Sensoren und der CLI, trifft Entscheidungen und sendet entsprechende Befehle an die Aktoren. Sie ist das Gehirn des Systems.
-#### Datenverarbeitung:
+#### Datenverarbeitung
 **Position:** In der Nähe der Steuerungslogik innerhalb der Systemgrenze.
 **Beschreibung:** Diese Komponente handhabt interne Datenoperationen, speichert Testergebnisse und Verlaufsinformationen, die für Testszenarien innerhalb des simulierten Systems benötigt werden.
 
-## 3. Anforderungsanalyse
-### 3.1 Funktionale Anforderungen
+## Anforderungsanalyse
+### Funktionale Anforderungen
 Das Smart Home System, das für die FHDW entwickelt wird, zielt darauf ab, eine Plattform für Lehr- und Forschungszwecke zu bieten. Daher muss das System folgende funktionale Anforderungen erfüllen:
 
-#### Aktoren und Sensoren Integration: 
+#### Aktoren und Sensoren Integration
 Das System muss verschiedene Aktoren und Sensoren integrieren können. Beispiele für Aktoren sind Lichtschalter, Relais, Lüftungsregler, Heizungen, Rolladenmotoren und Türschlösser. Sensoren sollten in der Lage sein, verschiedene Umgebungsparameter wie Temperatur, Lichtstärke, Luftfeuchtigkeit, Anwesenheit von Personen und RFID-Tags zu erfassen.
-#### Visualisierung: 
+#### Visualisierung
 Eine grundlegende Visualisierungskomponente muss implementiert werden, die über ein Command Line Interface (CLI) bedienbar ist. Diese Komponente sollte die Möglichkeit bieten, eine Liste von Gebäuden, Etagen und Räumen anzuzeigen sowie aktuelle Sensorwerte pro Raum oder Sensortyp darzustellen.
-#### Manuelle Ansteuerung von Aktoren: 
+#### Manuelle Ansteuerung von Aktoren
 Benutzer sollten in der Lage sein, Aktoren manuell zu steuern, sowohl auf der Ebene einzelner Räume als auch gebäude- oder etagenweit.
-#### Regelsystem: 
+#### Regelsystem
 Es sollte möglich sein, Regeln zu definieren, die auf Klassen oder Interfaces basieren. Diese Regeln können entweder durch Sensorereignisse, zu festgelegten Zeiten oder manuell getriggert werden.
-#### Einfache Erweiterbarkeit: 
+#### Einfache Erweiterbarkeit
 Die Softwarearchitektur muss so gestaltet sein, dass sie einfach um neue Sensoren, Aktoren und Regeln erweitert werden kann.
-### 3.2 Nicht-funktionale Anforderungen
+### Nicht-funktionale Anforderungen
 Neben den funktionalen Anforderungen muss das Smart Home System auch folgende nicht-funktionale Anforderungen erfüllen:
 
-#### Skalierbarkeit: 
+#### Skalierbarkeit
 Das System muss in der Lage sein, mehrere Gebäude zu unterstützen und leicht skalierbar sein, um zusätzliche Gebäude, Etagen und Räume hinzufügen zu können.
-#### Benutzerfreundlichkeit: 
+#### Benutzerfreundlichkeit
 Die Bedienung des Systems, insbesondere das CLI, muss intuitiv und benutzerfreundlich sein, um eine effiziente Nutzung und Forschung zu ermöglichen.
-#### Zuverlässigkeit und Stabilität: 
+#### Zuverlässigkeit und Stabilität
 Das System muss stabil und zuverlässig laufen, insbesondere da es für Bildungs- und Forschungszwecke eingesetzt wird.
-#### Wartbarkeit: 
+#### Wartbarkeit
 Die Wartung des Systems sollte durch klare Dokumentation und eine modular aufgebaute Architektur vereinfacht werden
 
-### 3.3 Benutzerrollen und Interaktionen
+### Benutzerrollen und Interaktionen
 Im Rahmen des Entwurfs für das Smart Home System an der FHDW wird kein Unterschied zwischen verschiedenen Benutzertypen gemacht. Das System ist so konzipiert, dass es keine spezifischen Rollen mit unterschiedlichen Anforderungen oder Berechtigungen gibt. Jeder Benutzer des Systems hat Zugriff auf die gleichen Funktionen und Möglichkeiten:
 
-#### Einheitliche Benutzerinteraktion: 
+#### Einheitliche Benutzerinteraktion
 Alle Benutzer des Systems interagieren über das gleiche Command Line Interface (CLI) und haben Zugriff auf alle Funktionen des Systems. Dies umfasst die Anzeige von Gebäuden, Etagen und Räumen, das Abrufen aktueller Sensorwerte und die manuelle Ansteuerung von Aktoren.
-#### Gleiche Zugriffsrechte: 
+#### Gleiche Zugriffsrechte
 Es gibt keine differenzierten Zugriffsrechte oder unterschiedliche Benutzerebenen. Jeder Benutzer kann das System vollumfänglich nutzen, was die Bedienung vereinfacht und die Einarbeitungszeit minimiert.
-#### Homogene Nutzungserfahrung: 
+#### Homogene Nutzungserfahrung
 Die Entscheidung, keine unterschiedlichen Benutzerrollen zu implementieren, zielt darauf ab, eine homogene Nutzungserfahrung für alle Anwender zu schaffen. Dies ist besonders vorteilhaft in einem akademischen Umfeld, wo Flexibilität und einfacher Zugang zu Lehr- und Forschungstools gewünscht sind.
 
-## 4. Design und Konzeption
+## Design und Konzeption
    Das Design und die Konzeption des Smart Home Systems an der FHDW basieren auf einer durchdachten und skalierbaren Softwarearchitektur, die darauf abzielt, eine flexible Plattform für Lehr- und Forschungszwecke zu bieten. Dieser Abschnitt der Dokumentation beschreibt die zentralen Designentscheidungen, die Bausteinsicht und das UML-Diagramm, das die Systemarchitektur visualisiert.
 
-### 4.1 Bausteinsicht
+### Bausteinsicht
 Die Bausteinsicht des Smart Home Systems visualisiert die wichtigsten Softwarekomponenten und ihre Beziehungen zueinander. Hier wird die Hierarchie und Kommunikation zwischen verschiedenen Elementen des Systems dargestellt, die in der Systemarchitektur definiert sind.
 
 ![Bausteinansicht.png](documentation/Bausteinsicht.png)
@@ -142,30 +183,28 @@ Zentrale Verwaltung durch RuleManager: Der RuleManager spielt eine zentrale Roll
 Interaktion durch ConsoleInterface: Das ConsoleInterface ermöglicht eine direkte und einfache Interaktion mit dem System, was besonders nützlich ist, um das System für Lehr- und Forschungszwecke anzupassen und zu steuern.
 Diese Architektur bietet eine klare Trennung der Verantwortlichkeiten und fördert eine hohe Kohäsion innerhalb der Komponenten, was die Wartung und Erweiterung des Systems erleichtert.
 
-### 4.2 UML-Diagramm
+### UML-Diagramm
 ![UML.png](documentation/UML.png)
 
 Das UML-Diagramm gibt einen detaillierten Überblick über die Klassenstruktur und Beziehungen innerhalb des Smart Home Systems. Es illustriert die Objektorientierung und das Design des Systems und zeigt die Verbindungen zwischen Schnittstellen und Implementierungen auf. Hier eine Beschreibung des UML-Diagramms:
 
-#### Hauptkomponenten und Klassen:
-
+#### Hauptkomponenten und Klassen
 * IBuilding, IFloor, IRoom: Diese Interfaces definieren die Methoden, die von den entsprechenden Klassen Building, Floor und Room implementiert werden. Sie ermöglichen grundlegende Operationen wie das Hinzufügen oder Abrufen von Etagen und Räumen sowie das Setzen und Abrufen von Eigenschaften wie Gebäudenummer oder Raumname.
 * Building, Floor, Room: Diese Klassen sind die konkreten Implementierungen der zuvor genannten Schnittstellen und bieten Funktionalitäten zur Verwaltung der physischen Strukturen des Gebäudes. Building verwaltet mehrere Floors, während Floor mehrere Rooms verwaltet, was die hierarchische Struktur des Gebäudemanagements widerspiegelt.
 * Device, Actor, Switch, VentilationDevice, TemperatureSensor, HumidityDevice, Heater, Light: Diese Klassen repräsentieren die Geräte und Aktoren im System. Device ist die Basisklasse für alle Geräte, während Actor eine spezifische Klasse für Aktoren darstellt, die Aktionen ausführen können, wie z.B. das Aktivieren oder Deaktivieren von Geräten. Spezialisierte Geräte wie Switch, Heater, oder Light haben spezifische Funktionen, die ihre jeweilige Rolle im System definieren.
 * RuleManager und Rule: RuleManager ist zuständig für die Verwaltung und Ausführung von Regeln innerhalb des Systems. Rule ist ein Interface, das von spezifischen Regelklassen wie TemperatureControlRule implementiert wird. Diese Klassen definieren spezifische Regeln, die basierend auf Sensordaten oder anderen Bedingungen aktiviert werden können.
 * ConsoleInterface und HandleCommands: ConsoleInterface ist die Klasse, die für die Interaktion des Benutzers mit dem System über ein Kommandozeileninterface verantwortlich ist. HandleCommands verarbeitet die über das Interface eingegebenen Befehle und führt entsprechende Aktionen aus, wie z.B. das Steuern von Geräten oder das Anzeigen von Systeminformationen.
 
-#### Beziehungen zwischen den Klassen:
+#### Beziehungen zwischen den Klassen
 * Vererbung und Implementierung: Die Verwendung von Interfaces wie IBuilding und IDevice ermöglicht es, dass verschiedene Klassen wie Building oder Device bestimmte Methoden implementieren müssen, was eine konsistente Nutzung dieser Objekte im System gewährleistet.
 * Aggregation und Komposition: Die Beziehungen zwischen Building, Floor und Room sind Beispiele für Aggregation, da ein Building mehrere Floors enthält, aber ohne diese weiter existieren kann. Die Verwendung von Komposition wäre bei der Verwaltung von Devices innerhalb eines Rooms zu sehen, wo das Löschen eines Rooms auch die darin enthaltenen Devices betrifft.
 * Assoziation: Klassen wie RuleManager und die verschiedenen Rule-Implementierungen zeigen Assoziationsbeziehungen, die anzeigen, wie Regeln im System verwaltet und ausgeführt werden.
 * Dieses UML-Diagramm ist zentral für das Verständnis der Funktionsweise und der strukturellen Organisation des Smart Home Systems, da es nicht nur die Einzelteile, sondern auch deren Interaktionen verdeutlicht.
 
-### 4.3 Technologische Wahl
+### Technologische Wahl
 Die Wahl der Technologie für das Smart Home System basiert auf Java, einer robusten und weit verbreiteten Programmiersprache, die sich ideal für die Entwicklung komplexer Softwaresysteme eignet. Java wurde aufgrund seiner starken Objektorientierung, der guten Unterstützung durch Entwicklungswerkzeuge und der umfangreichen Community gewählt. Diese Eigenschaften sind besonders wichtig für ein akademisches Umfeld, in dem Zuverlässigkeit, Wartbarkeit und die Möglichkeit zur Zusammenarbeit im Vordergrund stehen.
 
-### Vorteile von Java:
-
+### Vorteile von Java
 * **Plattformunabhängigkeit:** Java-Programme sind plattformunabhängig, was bedeutet, dass das Smart Home System auf verschiedenen Hardware- und Betriebssystemkonfigurationen ohne Modifikation ausgeführt werden kann. Dies ist besonders nützlich für ein System, das potenziell auf unterschiedliche physische Standorte erweitert werden könnte.
 * **Gemeinschaft und Ressourcen:** Es gibt eine große Entwicklergemeinschaft und eine Fülle von Ressourcen für Java-Entwickler, was die Problembehebung und den Austausch von Best Practices erleichtert.
 * **Sicherheit und Zuverlässigkeit:** Java ist bekannt für seine Sicherheitsfeatures und seine robuste Laufzeitumgebung, was es zu einer sicheren Wahl für das Backend eines Smart Home Systems macht.
@@ -173,3 +212,15 @@ Die Wahl der Technologie für das Smart Home System basiert auf Java, einer robu
 Für die Entwicklung wurde eine IDE IntelliJ IDEA verwendet, die speziell auf Java zugeschnitten ist und Entwicklern leistungsstarke Werkzeuge für die Codeverwaltung, das Debugging und das Testen bieten.
 
 Zusammenfassend ermöglicht Java die Entwicklung eines stabilen und skalierbaren Smart Home Systems, das die Anforderungen an ein modernes, erweiterbares und lehrreiches Forschungstool erfüllt. Die Entscheidung für Java trägt dazu bei, dass das System nicht nur funktional, sondern auch zukunftssicher und anpassungsfähig ist.
+
+## Dokumentation
+
+### Aktoren & Sensoren
+
+### Regelsysteme
+
+### Command Line Interface
+
+## Installationsanleitung
+
+## Weitere Schritte

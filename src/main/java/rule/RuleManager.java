@@ -31,5 +31,13 @@ public class RuleManager {
             System.out.println("Regel " + ruleName + " nicht gefunden.");
         }
     }
+
+    public void executeRule(String ruleName) {
+        if (rules.containsKey(ruleName)) {
+            rules.get(ruleName).execute();
+        } else {
+            System.out.println("Regel " + ruleName + " nicht gefunden.");
+        }
+    }
 }
 

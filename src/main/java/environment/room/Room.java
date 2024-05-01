@@ -34,8 +34,8 @@ public class Room implements IRoom{
     }
 
     @Override
-    public List<IDevice> getDevices() {
-        return null;
+    public List<Device> getDevices() {
+        return devices;
     }
 }
 

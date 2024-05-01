@@ -12,59 +12,56 @@ import rule.TemperatureControlRule;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        // Erstellen von Geräten (Sensoren und Aktoren)
-        TemperatureSensor tempSensor1 = new TemperatureSensor("TempSensor1", "10");
-        Heater heater1 = new Heater("Heater1", "OFF");
-        VentilationDevice ventDev1 = new VentilationDevice("VentilationDevice1", "20");
-        HumidityDevice humDev1 = new HumidityDevice("HumidityDevice1", "1000");
-        // Erstellen eines Raumes und Hinzufügen von Geräten
-        Room room1 = new Room("Konferenzraum");
-        room1.addDevice(tempSensor1);
-        room1.addDevice(heater1);
-        room1.addDevice(ventDev1);
-        room1.addDevice(humDev1);
+        // Erstellen der Sensoren und Aktoren
+        Switch switch1 = new Switch("switch1", "ON");
+        TemperatureSensor tempSen1 = new TemperatureSensor("tempSen1", "20");
+        TemperatureSensor tempSen2 = new TemperatureSensor("tempSen2", "30");
+        HumidityDevice humDev1 = new HumidityDevice("humDev1", "80");
 
-        // Erstellen einer Etage und Hinzufügen des Raumes
+        Light light1 = new Light("light1", "ON");
+        Heater heater1 = new Heater("heater1", "ON");
+        Heater heater2 = new Heater("heater2", "ON");
+        VentilationDevice venDev1 = new VentilationDevice("venDev1", "40");
+
+        // Erste Etage mit zwei Räumen
+        Room room1Floor1 = new Room("Office 1.1");
+        room1Floor1.addDevice(heater1);
+        room1Floor1.addDevice(tempSen1);
+
+        Room room2Floor1 = new Room("Office 1.2");
+        room2Floor1.addDevice(heater2);
+        room2Floor1.addDevice(tempSen2);
+
         Floor floor1 = new Floor(1);
-        floor1.addRoom(room1);
+        floor1.addRoom(room1Floor1);
+        floor1.addRoom(room2Floor1);
 
-        // Erstellen eines Gebäudes und Hinzufügen der Etage
-        Building building = new Building("1234 Smart Home Straße");
+        // Zweite Etage mit zwei Räumen
+        Room room1Floor2 = new Room("Office 2.1");
+        room1Floor2.addDevice(switch1);
+        room1Floor2.addDevice(light1);
+
+        Room room2Floor2 = new Room("Office 2.2");
+        room2Floor2.addDevice(humDev1);
+        room2Floor2.addDevice(venDev1);
+
+        Floor floor2 = new Floor(2);
+        floor2.addRoom(room1Floor2);
+        floor2.addRoom(room2Floor2);
+
+        // Gebäude initialisieren
+        Building building = new Building("1234 Smart St.");
         building.addFloor(floor1);
+        building.addFloor(floor2);
 
-        // Erstellen des Regel-Managers und Hinzufügen von Regeln
+        // Regelmanager und Regeln
         RuleManager ruleManager = new RuleManager();
-        TemperatureControlRule tempRule = new TemperatureControlRule(tempSensor1, heater1);
-        ruleManager.addRule("TempControl", tempRule);
+        TemperatureControlRule tempControlRule1 = new TemperatureControlRule(tempSen2, heater2);
+        ruleManager.addRule("TempControl1", tempControlRule1);
 
-        // Starten der Konsole-Interface
+        // Starten der CLI
         ConsoleInterface.startInterface(building, ruleManager);
     }
+
 }
 
-
-        /*  / Erstellung der Geräte
-        Heater heater = new Heater("Heater1", "OFF");
-        TemperatureSensor tempSensor = new TemperatureSensor("TempSensor1", "10");
-
-        // Erstellung des Raums und Hinzufügen der Geräte
-        Room room = new Room("Office");
-        room.addDevice(heater);
-        room.addDevice(tempSensor);
-
-        // Erstellung der Etage und Hinzufügen des Raums
-        Floor floor = new Floor(1);
-        floor.addRoom(room);
-
-        // Erstellung des Gebäudes und Hinzufügen der Etage
-        Building building = new Building("1234 Smart St.");
-        building.addFloor(floor);
-
-        // Erstellung der Regel
-        TemperatureControlRule tempControlRule = new TemperatureControlRule(tempSensor, heater);
-
-        // Starten der GUI und Bereitstellen der Gebäudeinformationen und Regel
-        ConsoleInterface.startInterface(building, tempControlRule);
-    }
-}
-            */

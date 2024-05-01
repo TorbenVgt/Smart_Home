@@ -8,6 +8,7 @@
 ## Autor:
 - Torben Voigt
 # Inhaltsverzeichnis
+- ## Inhaltsverzeichnis
 - [Einleitung](#einleitung)
     - [Überblick über das Smart Home System](#überblick-über-das-smart-home-system)
     - [Zielsetzung dieser Dokumentation](#zielsetzung-dieser-dokumentation)
@@ -38,6 +39,7 @@
     - [Command Line Interface](#command-line-interface)
 - [Installationsanleitung](#installationsanleitung)
 - [Weitere Schritte](#weitere-schritte)
+
 ## Einleitung
 ### Überblick über das Smart Home System
 Dieses Dokument dient als umfassender Leitfaden für das im Rahmen meines Studiums entwickelte Smart Home System an der FHDW. Es zielt darauf ab, eine detaillierte Einsicht in die Struktur und Funktionalität des Systems zu bieten, sowie die technologischen Entscheidungen, die zur Realisierung des Projekts getroffen wurden, zu erläutern.
@@ -175,7 +177,8 @@ Die Bausteinsicht des Smart Home Systems visualisiert die wichtigsten Softwareko
 **HandleCommands:** Eine Hilfsklasse, die für das Verarbeiten von Benutzerbefehlen über das ConsoleInterface verantwortlich ist. Sie interpretiert die Eingaben und leitet entsprechende Aktionen ein.
 
 #### Spezifische Geräteklassen
-Switch, VentilationDevice, TemperatureSensor, HumidityDevice, Light, Heater: Diese Klassen sind spezialisierte Implementierungen von Device oder Actor, die jeweils spezifische Funktionen in Bezug auf ihre Aufgabe im System erfüllen. Beispielsweise kann ein Switch das Ein- und Ausschalten von Licht regeln, während ein TemperatureSensor Temperaturdaten liefert.
+**Switch, VentilationDevice, TemperatureSensor, HumidityDevice, Light, Heater:** Diese Klassen sind spezialisierte Implementierungen von Device oder Actor, die jeweils spezifische Funktionen in Bezug auf ihre Aufgabe im System erfüllen. Beispielsweise kann ein Switch das Ein- und Ausschalten von Licht regeln, während ein TemperatureSensor Temperaturdaten liefert.
+
 Diese Bausteinsicht bietet einen umfassenden Überblick über die Architektur und die einzelnen Komponenten des Smart Home Systems, die für die Erfüllung der spezifischen Anforderungen des Projekts essentiell sind. Sie verdeutlicht, wie die Komponenten miteinander interagieren und zusammenarbeiten, um eine flexible und erweiterbare Plattform für das Smart Home zu schaffen.
 
 Modularität und Wiederverwendbarkeit: Die Verwendung von Schnittstellen wie IBuilding, IFloor, IRoom, IDevice und IActor fördert die Wiederverwendbarkeit von Code und erleichtert die Erweiterung des Systems. Neue Gerätetypen oder Aktoren können durch das Implementieren der entsprechenden Schnittstellen leicht hinzugefügt werden.
@@ -353,3 +356,20 @@ Sobald das CLI gestartet ist, können Benutzer verschiedene Befehle eingeben, um
 Um das Smart Home System zu beenden, geben Sie einfach den Befehl exit in das CLI ein. Dieser Befehl beendet das Programm sicher und stellt sicher, dass alle Prozesse ordnungsgemäß geschlossen werden.
 
 ## Weitere Schritte
+
+Zukünftige Verbesserungen für das Smart Home System
+
+1. Integration einer graphischen Benutzeroberfläche (GUI)
+   Ziel: Erweiterung der bestehenden CLI um eine intuitive, benutzerfreundliche graphische Schnittstelle.
+   Nutzen: Vereinfachung der Bedienung für weniger technikaffine Nutzer und Bereitstellung visueller Feedbacks und Echtzeit-Dashboards.
+2. Erweiterung der Geräte- und Sensorenvielfalt
+   Ziel: Hinzufügen neuer Typen von Sensoren und Aktoren, wie CO2-Sensoren, Wassersensoren oder intelligente Steckdosen.
+   Nutzen: Erhöhung der Überwachungs- und Steuerungsmöglichkeiten, was zu einem umfassenderen Management des Gebäudes beiträgt.
+3. Implementierung fortschrittlicherer Regelsysteme
+   Ziel: Entwicklung komplexerer Algorithmen für das Regelsystem, einschließlich maschinellem Lernen und adaptiven Systemen.
+   Nutzen: Automatisierung wird intelligenter und kann sich besser an die Gewohnheiten und Vorlieben der Nutzer anpassen.
+4. Verbesserung der Datenanalyse und -visualisierung
+   Ziel: Implementierung von Tools zur Datenanalyse und Visualisierung für gesammelte Daten.
+   Nutzen: Besseres Verständnis der Umgebungsdaten und effektivere Nutzung der gewonnenen Informationen zur Optimierung des Systembetriebs.
+
+Diese vorgeschlagenen Verbesserungen könnten schrittweise implementiert werden, um das Smart Home System kontinuierlich weiterzuentwickeln und an die sich ändernden Anforderungen und technologischen Möglichkeiten anzupassen. Durch die Umsetzung dieser Maßnahmen kann das System seine Effizienz und Nutzerfreundlichkeit verbessern

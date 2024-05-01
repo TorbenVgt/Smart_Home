@@ -1,6 +1,6 @@
 package environment.device;
 
-class Light extends Device implements IActor {
+public class Light extends Device implements IActor {
     public Light(String deviceId, String status) {
         super(deviceId, status);
     }
